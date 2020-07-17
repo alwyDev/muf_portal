@@ -2,10 +2,31 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MufPortal());
+  runApp(MaterialApp(
+    title: 'MUF Portal',
+    home: MufPortal(),
+  ));
 }
 
-class MufPortal extends StatelessWidget {
+// Login Page
+class MufPortal extends StatefulWidget {
+  @override
+  _MufPortalState createState() => _MufPortalState();
+}
+
+class _MufPortalState extends State<MufPortal> {
+  bool _isTapped = true;
+
+  void _toggleIcon() {
+    setState(() {
+      if (_isTapped) {
+        _isTapped = false;
+      } else {
+        _isTapped = true;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -39,6 +60,7 @@ class MufPortal extends StatelessWidget {
                     size: 30,
                   ),
                   title: TextField(
+                    autofocus: true,
                     decoration: InputDecoration(
                         border: InputBorder.none, hintText: 'NIK'),
                   ),
@@ -58,9 +80,12 @@ class MufPortal extends StatelessWidget {
                       decoration: InputDecoration(
                           border: InputBorder.none, hintText: 'Password'),
                     ),
-                    trailing: Icon(
-                      Icons.visibility_off,
-                      size: 25,
+                    trailing: IconButton(
+                      icon: (_isTapped
+                          ? Icon(Icons.visibility_off)
+                          : Icon(Icons.visibility)),
+                      iconSize: 25,
+                      onPressed: _toggleIcon,
                     ),
                   )),
             ),
@@ -70,8 +95,11 @@ class MufPortal extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(0.1),
                 child: FlatButton(
-                  onPressed: (){
-                    print('Login button got pressed');
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Home()),
+                    );
                   },
                   child: Center(
                     child: Container(
@@ -126,6 +154,26 @@ class MufPortal extends StatelessWidget {
             ),
           ],
         )),
+      ),
+    );
+  }
+}
+
+// Home Page
+class Home extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home"),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Logout'),
+        ),
       ),
     );
   }
