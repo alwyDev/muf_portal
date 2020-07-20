@@ -39,7 +39,7 @@ class _MufPortalState extends State<MufPortal> {
         body: SafeArea(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
+          children: <Widget>[
             SizedBox(
               height: 50,
             ),
@@ -136,7 +136,7 @@ class _MufPortalState extends State<MufPortal> {
               child: Image.asset('images/login-logo-footer.png'),
             ),
             Row(
-              children: [
+              children: <Widget>[
                 Container(
                   margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
                   child: Text(
@@ -160,21 +160,225 @@ class _MufPortalState extends State<MufPortal> {
 }
 
 // Home Page
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  ListTile buildTile() {
+    return ListTile(
+      leading: Icon(
+        Icons.list,
+        size: 25,
+      ),
+      title: Text('ORDER'),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Order()),
+        );
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: Text("MUF Portal"),
+        backgroundColor: Colors.blue[900],
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.notifications,
+              size: 25,
+            ),
+            onPressed: () {
+              print('icon notification pressed');
+            },
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.exit_to_app,
+              size: 25,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MufPortal()),
+              );
+            },
+          ),
+        ],
       ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('Logout'),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+
+          children: <Widget>[
+            DrawerHeader(
+              child: Image.asset('images/Logo-MUF-Portal2.png'),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.list,
+                size: 25,
+              ),
+              title: Text('ORDER'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Order()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.print,
+                size: 25,
+              ),
+              title: Text('CETAK PO & SIP BPKB'),
+              onTap: () {
+                print('tapped CETAK PO & SIP BPKB');
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.account_circle,
+                size: 25,
+              ),
+              title: Text('PROFILE'),
+              onTap: () {
+                print('tapped PROFILE');
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.priority_high,
+                size: 25,
+              ),
+              title: Text('MUF NEWS'),
+              onTap: () {
+                print('tapped MUF NEWS');
+                Navigator.pop(context);
+              },
+            )
+          ],
         ),
       ),
+      body: Center(
+          child: Container(
+        child: Text(
+          'Selamat datang',
+          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        ),
+      )),
+    );
+  }
+}
+
+// Order Page
+class Order extends StatefulWidget {
+  @override
+  _OrderState createState() => _OrderState();
+}
+
+class _OrderState extends State<Order> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Order'),
+        backgroundColor: Colors.blue[900],
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.notifications,
+              size: 25,
+            ),
+            onPressed: () {
+              print('icon notification pressed');
+            },
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.exit_to_app,
+              size: 25,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MufPortal()),
+              );
+            },
+          ),
+        ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Image.asset('images/Logo-MUF-Portal2.png'),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.list,
+                size: 25,
+              ),
+              title: Text('ORDER'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Order()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.print,
+                size: 25,
+              ),
+              title: Text('CETAK PO & SIP BPKB'),
+              onTap: () {
+                print('tapped CETAK PO & SIP BPKB');
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.account_circle,
+                size: 25,
+              ),
+              title: Text('PROFILE'),
+              onTap: () {
+                print('tapped PROFILE');
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.priority_high,
+                size: 25,
+              ),
+              title: Text('MUF NEWS'),
+              onTap: () {
+                print('tapped MUF NEWS');
+                Navigator.pop(context);
+              },
+            )
+          ],
+        ),
+      ),
+      body: Center(
+          child: Container(
+        child: Text(
+          'Order Page',
+          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        ),
+      )),
     );
   }
 }
