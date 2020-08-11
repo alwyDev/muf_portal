@@ -1,6 +1,6 @@
-# muf_portal
+# portal
 
-MUF Portal app with flutter
+Recretae MUF Portal app with flutter
 
 ## Getting Started
 
